@@ -1,0 +1,106 @@
+{%extends 'home/base.html'%}{% load static %}{%block content%}
+  <style>
+    .container {
+  max-width: 80rem;
+  margin: 2rem auto;
+  
+  .block {
+    padding: 1.5rem;
+    border-radius: 4px;
+    margin-bottom: 4rem;
+    box-shadow: 0 1px 6px rgba(#613b1f, 0.2);
+    background: rgb(0, 0, 0, 0.5);
+  }
+  
+  .content {
+    font-family: "Lucida Bright", Georgia, serif;
+    font-size: 1.1rem;
+    line-height: 1.5rem;
+    margin-bottom: 1rem;
+    
+    h2 {
+      margin: 0.5rem 0;
+    }
+  }
+  
+  a {
+    appearance: none;
+    color: #2779bd;
+    display: inline-flex;
+    align-items: center;
+    height: 26px;
+    text-decoration: none;
+    line-height: 26px;
+    padding: 0 14px;
+    font-size: 14px;
+    border-radius: 3px;
+    border: 1px solid #2779bd;
+    
+    &:hover {
+      background: rgba(#2779bd, 0.1);
+    }
+  }
+}
+
+  .excerpt-hidden {
+    height: 3.5rem;
+    overflow: hidden;
+    position: relative;
+    
+    &:after {
+      content: "";
+      position: absolute;
+      bottom: 0;
+      left: 0;
+      width: 100%;
+      height: 64px;
+    }
+  }
+
+  .excerpt-visible {
+    height: auto;
+    overflow: auto;
+  }
+</style>
+    <div id="page">
+        <section id="vision" style="background-image:url(https://assets.codepen.io/214624/vision.jpg);background-size: cover;background-repeat: no-repeat;">
+            <h1>Recent Articles Published in the AI space</h1>
+        </section>
+        <section style="background-image:url('home/static/images/knowledge.jpg');background-size: cover;background-repeat: no-repeat;">
+            <div style="z-index: 9999;" id="articles">
+                <h1 >Articles</h1>
+                <div class="container">
+                  <div class="block">
+                    <div class="content">
+                      <h2>How Do Neural Networks Learn? A Mathematical Formula Explains How They Detect Relevant Patterns</h2>
+                      <p>
+                        Neural networks have been powering breakthroughs in artificial intelligence, including the large language models that are now being used in a wide range of applications, from finance, to human .
+                      </p>
+                    </div>
+                    <a role="button" href="https://www.sciencedaily.com/releases/2024/03/240311205201.htm" class="js-show-more">Show more</a>
+                  </div>
+                  
+                   <div class="block">
+                    <div class="content">
+                      <h2>Robotic Interface Masters a Soft Touch</h2>
+                      <p class="js-excerpt excerpt-hidden">
+                        Researchers have developed a haptic device capable of reproducing the softness of various materials, from a marshmallow to a beating heart, overcoming a deceptively complex challenge that has previously eluded 
+                      </p>
+                    </div>
+                      <a role="button" href="https://www.sciencedaily.com/releases/2024/03/240311173019.htm" class="js-show-more">Show more</a>
+                  </div>
+                  
+                   <div class="block">
+                    <div class="content">
+                      <h2>Robot ANYmal Can Do Parkour and Walk Across Rubble</h2>
+                      <p class="js-excerpt excerpt-hidden">
+                        The quadrupedal robot ANYmal went back to school and has learned a lot. Researchers used machine learning to teach it new skills: the robot can now climb over obstacles and successfully negotiate
+                      </p>
+                    </div>
+                    <a role="button" href="https://www.sciencedaily.com/releases/2024/03/240313185058.htm" class="js-show-more">Show more</a>
+                  </div>
+                </div>
+            </div>
+        </section>
+    </div>
+{% endblock %}

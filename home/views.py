@@ -2,16 +2,10 @@ from django.shortcuts import render
 
 # Create your views here. 
 def home(request): 
-    # render function takes argument  - request 
-    # and return HTML as response 
-    return render(request, "home/home.html") 
+    return render(request, "home/pages/home.html") 
 
-def chatBot(request): 
-    # render function takes argument  - request 
-    # and return HTML as response 
-    return render(request, "home/chat.html") 
+def chatBot(request):  
+    return render(request, "home/pages/chat.html") 
 
 def pressReleases(request): 
-    # render function takes argument  - request 
-    # and return HTML as response 
-    return render(request, "home/pressRelease.html") 
+    return render(request, "home/pages/pressRelease.html") 
