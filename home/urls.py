@@ -11,6 +11,7 @@ app_name = 'home'
 urlpatterns = [ 
     path('', home,name='homepage'), 
     path('chat', chatBot, name="chatbot"), 
+    path('releases', pressReleases, name="release"), 
 ] 
 
 urlpatterns += static(settings.MEDIA_URL, document_root = settings.MEDIA_ROOT)

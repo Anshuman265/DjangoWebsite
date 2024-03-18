@@ -10,3 +10,8 @@ def chatBot(request):
     # render function takes argument  - request 
     # and return HTML as response 
     return render(request, "home/chat.html") 
+
+def pressReleases(request): 
+    # render function takes argument  - request 
+    # and return HTML as response 
+    return render(request, "home/pressRelease.html") 

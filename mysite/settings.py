@@ -26,14 +26,17 @@ SECRET_KEY = 'django-insecure-gj%#z$s_#0koo3!1pd=qcjt274gy10ncc)fl%z^%@6^b(xl3y6
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
 
-ALLOWED_HOSTS = ['localhost','.vercel.app','.now.sh']
+ALLOWED_HOSTS = ['*']
 
 # Application definition
+
+CORS_ORIGIN_ALLOW_ALL = True
 
 INSTALLED_APPS = [
     'home.apps.HomeConfig',
     'django.contrib.admin',
     'django.contrib.auth',
+    'corsheaders',
     'django.contrib.contenttypes',
     'django.contrib.sessions',
     'django.contrib.messages',
@@ -41,6 +44,7 @@ INSTALLED_APPS = [
 ]
 
 MIDDLEWARE = [
+    'corsheaders.middleware.CorsMiddleware',
     'django.middleware.security.SecurityMiddleware',
     'django.contrib.sessions.middleware.SessionMiddleware',
     'django.middleware.common.CommonMiddleware',
@@ -48,6 +52,7 @@ MIDDLEWARE = [
     'django.contrib.auth.middleware.AuthenticationMiddleware',
     'django.contrib.messages.middleware.MessageMiddleware',
     'django.middleware.clickjacking.XFrameOptionsMiddleware',
+    'django.middleware.common.CommonMiddleware'
 ]
 
 ROOT_URLCONF = 'mysite.urls'
