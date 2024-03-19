@@ -1,7 +1,250 @@
 {%extends 'home/base.html'%}{% load static %}{%block content%}
+<style>
+    .carousel {
+    position: relative;
+    height: 400px;
+    width: 100%;
+    margin: 0 auto;
+    margin-bottom: 5rem;
+    }
+    .carousel__images {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    }
+    .carousel__track-container {
+      background-color: rgba(114, 114, 114, 0.397);
+      height: 100%;
+      width: 100%;
+      position: relative;
+      overflow: hidden;
+      border-radius: 2rem;
+    }
+    .carousel__track {
+    padding: 0;
+    margin: 0;
+    position: relative;
+    height: 100%;
+    transition: transform 0.4s ease-in-out;
+    }
+    .carousel__slide {
+    position: absolute;
+    top: 0;
+    bottom: 0;
+    width: 100%;
+    }
+    .carousel__button {
+    color: white;
+    position: absolute;
+    top: 50%;
+    transform: translateY(-50%);
+    border: 0;
+    background-color:white;
+    border-radius: 20px;
+    cursor: pointer;
+    transition: all 0.2s ease-in;
+    }
+    .carousel__button:hover {
+    background-color: rgb(254, 215, 222);
+    border-radius: 20px;
+    }
+
+    .carousel__button--left {
+    left: -40px;
+    }
+    .carousel__button--right {
+    right: -40px;
+    transform: translateY(-50%) rotate(180deg)
+    }
+    .carousel__button img {
+    width: 25px;
+    }
+    .carousel__nav {
+    display: flex;
+    justify-content: center;
+    padding: 20px 0;
+    gap: 1rem;
+    }
+    .carousel__indicator {
+    border-radius: 50%;
+    width: 15px;
+    height: 15px;
+    cursor: pointer;
+    }
+
+    .carousel__indicator.current-slide {
+      background: rgba(255, 255, 255, 0);
+      border-color: white;
+    }
+    .is-hidden {
+    display: none;
+    }
+
+
+/* for the buttonspl */
+@property --border-angle-1 {
+	syntax: "<angle>";
+	inherits: true;
+	initial-value: 0deg;
+}
+
+@property --border-angle-2 {
+	syntax: "<angle>";
+	inherits: true;
+	initial-value: 90deg;
+}
+
+@property --border-angle-3 {
+	syntax: "<angle>";
+	inherits: true;
+	initial-value: 180deg;
+}
+
+
+/* sRGB color. */
+:root {
+	--bright-blue: rgb(0, 100, 255);
+	--bright-green: rgb(0, 255, 0);
+	--bright-red: rgb(255, 0, 0);
+	--background: black;
+	--foreground: white;
+	--border-size: 2px;
+	--border-radius: 0.75em;
+}
+
+/* Display-P3 color, when supported. */
+@supports (color: color(display-p3 1 1 1)) {
+	:root {
+		--bright-blue: color(display-p3 0 0.2 1);
+		--bright-green: color(display-p3 0.4 1 0);
+		--bright-red: color(display-p3 1 0 0);
+	}
+}
+
+@keyframes rotateBackground {
+	to { --border-angle-1: 360deg; }
+}
+
+@keyframes rotateBackground2 {
+	to { --border-angle-2: -270deg; }
+}
+
+@keyframes rotateBackground3 {
+	to { --border-angle-3: 540deg; }
+}
+
+#buttonspl {
+	--border-angle-1: 0deg;
+	--border-angle-2: 90deg;
+	--border-angle-3: 180deg;
+	color: inherit;
+	font-size: calc(0.8rem + 4vmin);
+	font-family: inherit;
+	border: 0;
+	padding: var(--border-size);
+	display: flex;
+	width: max-content;
+	border-radius: var(--border-radius);
+	background-color: transparent;
+	background-image: conic-gradient(
+			from var(--border-angle-1) at 10% 15%,
+			transparent,
+			var(--bright-blue) 10%,
+			transparent 30%,
+			transparent
+		),
+		conic-gradient(
+			from var(--border-angle-2) at 70% 60%,
+			transparent,
+			var(--bright-green) 10%,
+			transparent 60%,
+			transparent
+		),
+		conic-gradient(
+			from var(--border-angle-3) at 50% 20%,
+			transparent,
+			var(--bright-red) 10%,
+			transparent 50%,
+			transparent
+		);
+	animation: 
+		rotateBackground 3s linear infinite,
+		rotateBackground2 8s linear infinite,
+		rotateBackground3 13s linear infinite;
+}
+
+/* Change this background to transparent to see how the gradient works */
+#buttonspl>div {
+	background: var(--background); 
+	padding: 1em 1.5em;
+	border-radius: calc(var(--border-radius) - var(--border-size));
+	color: var(--foreground);
+}
+
+@font-face {
+	font-family: "Aspekta";
+	font-weight: normal;
+	src: url("https://assets.codepen.io/240751/Aspekta-300.woff2") format("woff2");
+}
+</style>
 <div id="page" class="">
     <section id="vision">
-        <h1>CeleritasAI</h1>
+        <div style="margin-top: 8rem;text-align: center;width: 100%;">
+            <div>
+                <div class="carousel">
+                  <button class="carousel__button carousel__button--left is-hidden">
+                    <img src="https://www.iconpacks.net/icons/2/free-arrow-left-icon-3099-thumb.png" alt="left" />
+                  </button>
+                  <div class="carousel__track-container">
+                    <ul class="carousel__track">
+                      <li class="carousel__slide current-slide">
+                        <div class="carousel__images" style="display: flex;align-items: center;">
+                          <span style="text-align: left;padding-left: 2rem;font-size: 3rem;width: 50%;">
+                              Get <strong>ready</strong> for your business and upgrade <strong> all aspects</strong> 
+                          </span>              
+                          <span>
+                            <div id="buttonspl">
+                              <div>
+                                Discover More
+                              </div>
+                            </div>
+                          </span>
+                        </div>
+                      </li>
+                      <li class="carousel__slide">
+                        <div class="carousel__images">
+                          Something
+                        </div>
+                      </li>
+                      <li class="carousel__slide">
+                        <div class="carousel__images">
+                          Something
+                        </div>
+                      </li>
+                      <li class="carousel__slide">
+                        <div class="carousel__images">
+                          Something
+                        </div>
+                      </li>
+                      <li class="carousel__slide">
+                        <div class="carousel__images">
+                          Something
+                        </div>
+                      </li>
+                    </ul>
+                  </div>
+                  <button class="carousel__button carousel__button--right">
+                    <img src="https://www.iconpacks.net/icons/2/free-arrow-left-icon-3099-thumb.png" alt="right" />
+                  </button>
+                  <div class="carousel__nav">
+                    <button class="carousel__indicator current-slide"></button>
+                    <button class="carousel__indicator"></button>
+                    <button class="carousel__indicator"></button>
+                    <button class="carousel__indicator"></button>
+                    <button class="carousel__indicator"></button>
+                  </div>
+                </div>
+        </div>
     </section>
     <section id="knowledge" style="background-image:url('home/static/images/knowledge.jpg');background-size: cover;background-repeat: no-repeat;">
         <h1>Knowledge.</h1>
@@ -30,5 +273,74 @@
     color: 0xe62b64,
     points: 12.00
     })
+</script>
+<script>
+    const track = document.querySelector(".carousel__track"); //ul
+const slides = Array.from(track.children); //li items
+const nextButton = document.querySelector(".carousel__button--right ");
+const prevButton = document.querySelector(".carousel__button--left");
+const dotsNav = document.querySelector(".carousel__nav");
+const dots = Array.from(dotsNav.children);
+
+const slideWidth = slides[0].getBoundingClientRect().width;
+const setSlidePosition = (slide, index) => {
+  slide.style.left = slideWidth * index + "px";
+};
+slides.forEach(setSlidePosition);
+const moveToSlide = (track, currentSlide, targetSlide) => {
+  track.style.transform = "translateX(-" + targetSlide.style.left + ")";
+  currentSlide.classList.remove("current-slide");
+  targetSlide.classList.add("current-slide");
+};
+const hideShowArrows = (slides, prevButton, nextButton, targetIndex) => {
+  if (targetIndex === 0) {
+    prevButton.classList.add("is-hidden");
+    nextButton.classList.remove("is-hidden");
+  } else if (targetIndex === slides.length - 1) {
+    prevButton.classList.remove("is-hidden");
+    nextButton.classList.add("is-hidden");
+  } else {
+    prevButton.classList.remove("is-hidden");
+    nextButton.classList.remove("is-hidden");
+  }
+};
+const updateDots = (currentDot, targetDot) => {
+  currentDot.classList.remove("current-slide");
+  targetDot.classList.add("current-slide");
+};
+
+nextButton.addEventListener("click", (e) => {
+  const currentSlide = track.querySelector(".current-slide");
+  const nextSlide = currentSlide.nextElementSibling;
+  const currentDot = dotsNav.querySelector(".current-slide");
+  const nextDot = currentDot.nextElementSibling;
+  const nextIndex = slides.findIndex((slide) => slide === nextSlide);
+  moveToSlide(track, currentSlide, nextSlide);
+  updateDots(currentDot, nextDot);
+  hideShowArrows(slides, prevButton, nextButton, nextIndex);
+});
+
+prevButton.addEventListener("click", (e) => {
+  const currentSlide = track.querySelector(".current-slide");
+  const prevSlide = currentSlide.previousElementSibling;
+  const currentDot = dotsNav.querySelector(".current-slide");
+  const prevDot = currentDot.previousElementSibling;
+  const prevIndex = slides.findIndex((slide) => slide === prevSlide);
+  moveToSlide(track, currentSlide, prevSlide);
+  updateDots(currentDot, prevDot);
+  hideShowArrows(slides, prevButton, nextButton, prevIndex);
+});
+
+dotsNav.addEventListener("click", (e) => {
+  const targetDot = e.target.closest("button");
+  if (!targetDot) return;
+  const currentSlide = track.querySelector(".current-slide");
+  const currentDot = dotsNav.querySelector(".current-slide");
+  const targetIndex = dots.findIndex((dot) => dot === targetDot);
+  const targetSlide = slides[targetIndex];
+  moveToSlide(track, currentSlide, targetSlide);
+  updateDots(currentDot, targetDot);
+  hideShowArrows(slides, prevButton, nextButton, targetIndex);
+});
 </script>
 {% endblock %}
